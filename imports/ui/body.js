@@ -25,7 +25,7 @@ Template.body.events({
             createdAt: new Date(), //время создания задачи
         });
 
-        //очищаем форму
+        //очищаем форму отправки задачи
         target.text.value = '';
     },
 });
