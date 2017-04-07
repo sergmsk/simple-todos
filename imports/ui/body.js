@@ -1,4 +1,4 @@
-import { Template } from 'meteor/templating';
+п»їimport { Template } from 'meteor/templating';
 
 import { Tasks } from '../api/tasks.js';
 
@@ -6,26 +6,28 @@ import './body.html';
 
 Template.body.helpers({
     tasks() {
-        return Tasks.find({});
+        return Tasks.find({}, { sort: {createdAt: -1} });
     },
 });
 
 Template.body.events({
     'submit .new-task'(event) {
-        //Запретить отправку формы браузера по умолчанию
+        //Р—Р°РїСЂРµС‚РёС‚СЊ РѕС‚РїСЂР°РІРєСѓ С„РѕСЂРјС‹ Р±СЂР°СѓР·РµСЂР° РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
         event.preventDefault();
 
-        //Получить значение из элемента формы
+        //РџРѕР»СѓС‡РёС‚СЊ Р·РЅР°С‡РµРЅРёРµ РёР· СЌР»РµРјРµРЅС‚Р° С„РѕСЂРјС‹
         const target = event.target;
         const text = target.text.value;
 
-        //Вставка задачи в коллекцию
+        //Р’СЃС‚Р°РІРєР° Р·Р°РґР°С‡Рё РІ РєРѕР»Р»РµРєС†РёСЋ
         Tasks.insert({
             text,
-            createdAt: new Date(), //время создания задачи
+            createdAt: new Date(), //РІСЂРµРјСЏ СЃРѕР·РґР°РЅРёСЏ Р·Р°РґР°С‡Рё
         });
 
-        //очищаем форму отправки задачи
+        //РѕС‡РёС‰Р°РµРј С„РѕСЂРјСѓ РѕС‚РїСЂР°РІРєРё Р·Р°РґР°С‡Рё
         target.text.value = '';
+        console.log(event);
     },
 });
+
