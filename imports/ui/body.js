@@ -35,12 +35,7 @@ Template.body.events({
         const text = target.text.value;
 
         //Вставка задачи в коллекцию
-        Tasks.insert({
-            text,
-            createdAt: new Date(), //время создания задачи
-            owner: Meteor.userId(),
- +          username: Meteor.user().username,
-        });
+        Meteor.call('tasks.insert', text);
 
         //очищаем форму отправки задачи
         target.text.value = '';
