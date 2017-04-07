@@ -19,6 +19,9 @@ Template.body.helpers({
         // иначе вывести все
         return Tasks.find({}, { sort: {createdAt: -1} });
     },
+    incompleteCount() {
+        return Tasks.find({ checked: { $ne: true } }).count();
+    },
 });
 
 Template.body.events({
