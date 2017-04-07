@@ -10,3 +10,22 @@ Template.body.helpers({
     },
 });
 
+Template.body.events({
+    'submit .new-task'(event) {
+        //Запретить отправку формы браузера по умолчанию
+        event.preventDefault();
+
+        //Получить значение из элемента формы
+        const target = event.target;
+        const text = target.text.value;
+
+        //Вставка задачи в коллекцию
+        Tasks.insert({
+            text,
+            createdAt: new Date(), //время создания задачи
+        });
+
+        //очищаем форму
+        target.text.value = '';
+    },
+});
