@@ -27,7 +27,7 @@ Template.body.events({
 
         //очищаем форму отправки задачи
         target.text.value = '';
-        console.log(event);
+        
     },
 });
 
