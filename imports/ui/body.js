@@ -11,6 +11,12 @@ Template.body.onCreated(function bodyOnCreated() {
 
 Template.body.helpers({
     tasks() {
+        const instance = Template.instance();
+        if (instance.state.get('hideCompleted')) {
+            // если есть выделение "выполнено"
+            return Tasks.find({ checked: { $ne: true } }, { sort: { createdAt: -1 } });
+        }
+        // иначе вывести все
         return Tasks.find({}, { sort: {createdAt: -1} });
     },
 });
